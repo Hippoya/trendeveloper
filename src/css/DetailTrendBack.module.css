@@ -1,22 +1,38 @@
 .background {
   border: 1px solid #89969f;
   width: 800px;
-  height: 620px;
+  height: fit-content;
   margin-left: 300px;
-  margin-top: 20px;
-  background: #fff;
-  overflow: auto;
+  top: 47.5px;
+  padding: 20px;
+  position: relative;
+  margin-bottom: 10vh;
 }
 
 .chart {
-  width : auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 400px;
-  position: relative;
-  top: -570px;
-  left: -130px;
+  margin-bottom: 20px;
 }
 
-.companyLabel{
+.headline-label {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.headline-label span {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.newsList {
+  margin-top: 20px;
+}
+
+.companyLabel {
   font-weight: bold;
   position: absolute;
   left: 570px;
@@ -24,5 +40,5 @@
 }
 
 .companyName {
-  color: #B93234;
+  color: #b93234;
 }

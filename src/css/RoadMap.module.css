@@ -1,0 +1,170 @@
+.background {
+  width: 70vw;
+  /* height: 65vh; */
+  margin-left: 18vw;
+  margin-bottom: 10vh;
+  margin-top: 1vh;
+  background: #fff;
+  border: 1px solid #89969f;
+}
+
+.sub-text {
+  margin-top: 4vh;
+  margin-left: 18vw;
+}
+
+.clicked-job {
+  color: #b93234;
+}
+
+.text {
+  font-weight: bold;
+  font-size: large;
+}
+
+.label1 {
+  font-weight: bold;
+  font-size: large;
+  margin-left: 2vw;
+  margin-top: 5vh;
+}
+
+.inner-box1 {
+  border: 1px solid #89969f;
+  margin-top: 2vh;
+  margin-left: 2vw;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+  height: 25vh;
+}
+
+.label2 {
+  font-weight: bold;
+  font-size: large;
+  margin-left: 2vw;
+  margin-top: 5vh;
+}
+
+.label2 span {
+  color: #b93234;
+}
+
+.inner-box2 {
+  border: 1px solid #89969f;
+  margin-top: 2vh;
+  margin-left: 2vw;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+  height: 25vh;
+}
+
+.label3 {
+  font-weight: bold;
+  font-size: large;
+  margin-left: 2vw;
+  margin-top: 5vh;
+}
+
+.label3 span {
+  color: #b93234;
+}
+
+.inner-box3 {
+  margin-top: 2vh;
+  margin-left: 2vw;
+  margin-bottom: 3vh;
+  justify-content: center;
+  align-items: center;
+  width: 65vw;
+  height: fit-content;
+}
+
+/* 랭킹 라벨 */
+
+.rank1 {
+  color: #ba0c2f;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 5.5vh;
+  margin-left: 2vw;
+}
+
+.rank2 {
+  color: #8b0c26;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 2vh;
+  margin-left: 2vw;
+}
+
+.rank3 {
+  color: #3e1112;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 2vh;
+  margin-left: 2vw;
+}
+
+.btn-container {
+  margin-top: 5vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Adjust this property to align the buttons as desired */
+}
+
+.btn {
+  margin: 10px;
+
+  padding: 10px 17px;
+  background-color: #e0e0e0;
+  color: #333;
+  font-size: small;
+  text-decoration: none;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.selected {
+  background-color: #ba0c2f;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #ba0c2f;
+  color: white;
+}
+
+.btn:last-child {
+  margin-right: 0;
+}
+
+/* 테이블 */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f5f5f5;
+}

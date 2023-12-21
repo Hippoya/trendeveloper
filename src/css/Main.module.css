@@ -1,0 +1,117 @@
+.banner {
+  font-weight: bold;
+  position: absolute;
+  left: 200px;
+  top: 200px;
+}
+
+.banner-image {
+  position: absolute;
+  width: 1100px;
+  height: 200px;
+  left: 200px;
+  margin-top: 100px;
+  border: 1px solid #89969f;
+}
+
+.label_1 {
+  font-weight: bold;
+  position: absolute;
+  left: 200px;
+  top: 520px;
+}
+
+.label_1 span {
+  color: #b93234;
+}
+
+.logo {
+  position: absolute;
+  top: 570px;
+  left: 200px;
+  width: 1100px;
+  height: 200px;
+  background: #fff;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.logo a {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will push your items towards the edges of the container */
+  align-items: center; /* This will keep your items horizontally centered */
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: 0 20px;
+  border: 1px solid #89969f;
+}
+
+.image {
+  position: relative;
+  width: 70%; /* reduce to 80% */
+  height: 70%; /* reduce to 80% */
+  object-fit: contain;
+  object-position: center;
+  z-index: 1; /* Less than companyNameInfo's z-index */
+}
+
+.companyNameInfo {
+  position: relative;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  top: 10px; /* adjust as necessary */
+  z-index: 2; /* higher than the image's z-index */
+}
+
+.jobsNmInfo {
+  position: relative;
+  color: black;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  bottom: 15px; /* adjust as necessary */
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: 0.5s ease;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.container:hover .overlay {
+  height: 50%;
+}
+
+.text span {
+  display: block;
+  font-size: 14px;
+}
+
+.text {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}

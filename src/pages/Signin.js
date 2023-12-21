@@ -1,115 +1,138 @@
-// import React, { useState } from "react";
-// import "../css/App.css";
-// import { useNavigate } from "react-router-dom";
-// import "../css/Common.css";
+import React, { useState, useContext } from "react";
 
-// const API_URI = process.env.REACT_APP_API_URI;
+import { AuthContext } from "../context/Auth.context.js";
 
-// async function signinUser(credentials) {
-//   return fetch(API_URI + "/api/v1/auth/signin", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(credentials),
-//   }).then((data) => data);
-// }
+import { useNavigate } from "react-router-dom";
+import "../css/App.css";
+import "../css/Common.css";
+import "../css/Sign.css";
 
-// const Signin = () => {
-//   const navigate = useNavigate();
+const API_URI = process.env.REACT_APP_API_URI;
 
-//   const navigateToSignup = () => {
-//     navigate("/signup");
-//   };
+// Function to send a POST request to the server to sign in the user
+async function signinUser(credentials) {
+  return fetch(API_URI + "/api/v1/auth/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  }).then((data) => data);
+}
 
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
+const Signin = () => {
+  // Get the changeSignedIn function from the AuthContext
+  const { changeSignedIn } = useContext(AuthContext);
 
-//   const handleEmail = (e) => {
-//     setEmail(e.target.value);
-//   };
+  // Set the initial state of email and password to empty strings
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-//   const handlePassword = (e) => {
-//     setPassword(e.target.value);
-//   };
+  // Get the navigate function from react-router-dom
+  const navigate = useNavigate();
 
-//   // signin 버튼 클릭 이벤트
-//   const onClickSignin = async (e) => {
-//     e.preventDefault();
-//     const urlSearchParams = new URLSearchParams(window.location.search);
-//     if(urlSearchParams.has("id")){
-//       console.log(urlSearchParams.get("id"));
-//     }
-//     let response = await signinUser({
-//       email,
-//       password
-//     });
-//     console.log(response);
-//     if (response.status === 403){
-//       window.alert("403 Forbidden");
-//     }
-//     else if (response.status === 200) {
-//       const responseJSON = await response.json();      
-//       if ("token" in responseJSON){
-//         var receivedToken = responseJSON["token"]
-//         localStorage.setItem("token", receivedToken);
-//         window.alert("Token: " + receivedToken);
-//       }
-//     }
-//   };
+  // Function to navigate to the signup page
+  const navigateToSignup = () => {
+    navigate("/signup");
+  };
 
-//   return (
-//     <div className="signin">
-//       <div className="signin-form">
-//         <form onSubmit={onClickSignin}>
-//           <div>
-//             <input
-//               className="box signinInfo email"
-//               id="email"
-//               placeholder="이메일"
-//               type="email"
-//               onChange={handleEmail}
-//             />
-//           </div>
-//           <div>
-//             <input
-//               type="password"
-//               placeholder="비밀번호"
-//               id="pw"
-//               className="box signinInfo pw"
-//               onChange={handlePassword}
-//             />
-//           </div>
-//           <div>
-//             <button
-//               type="submit"
-//               className="box signF-bt"
-//               onClick={onClickSignin}
-//             >
-//               로그인
-//             </button>
-//           </div>
-//           <div className="signin-sub">
-//             <span className="saveId">
-//               아이디 저장
-//               <input type="checkbox" />
-//             </span>
-//             <a href="https://www.naver.com/"> 아이디 찾기</a> |
-//             <a href="https://www.naver.com/"> 비밀번호 찾기</a>
-//           </div>
-//           <div>
-//             <button
-//               className="box signS-bt"
-//               type="button"
-//               onClick={navigateToSignup}
-//             >
-//               회원가입
-//             </button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
+  // Function to handle changes in the email input field
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-// export default Signin;
+  // Function to handle changes in the password input field
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  // Function to sign in the user
+  const setSignin = async (email, password) => {
+    // Send a POST request to the server to sign in the user
+    const response = await signinUser({
+      email,
+      password,
+    });
+    // If the response status is 403, show an alert message
+    if (response.status === 403) {
+      window.alert("아이디 및 비밀번호를 다시 확인해 주세요!");
+    }
+    // If the response status is 200, get the token and user information from the response
+    else if (response.status === 200) {
+      const responseJSON = await response.json();
+      // If the token is in the response, save the token and user information to local storage and change the signed in state
+      if ("token" in responseJSON) {
+        const receivedToken = responseJSON["token"];
+        localStorage.setItem("token", receivedToken);
+        const receivedName = responseJSON["name"];
+        localStorage.setItem("name", receivedName);
+        const receivedEmail = responseJSON["email"];
+        localStorage.setItem("email", receivedEmail);
+        changeSignedIn();
+        navigate("/");
+      }
+    }
+  };
+
+  // Function to handle the click event of the sign in button
+  const onClickSignin = async (e) => {
+    e.preventDefault();
+    setSignin(email, password);
+  };
+
+  // Render the sign in form
+  return (
+    <div className="sign">
+      <div className="signin-form">
+        <form onSubmit={onClickSignin}>
+          <div>
+            <input
+              className="box signinInfo email"
+              id="email"
+              placeholder="이메일"
+              type="email"
+              onChange={handleEmail}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="비밀번호"
+              id="pw"
+              className="box signinInfo pw"
+              onChange={handlePassword}
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="box signF-bt"
+              onClick={onClickSignin}
+            >
+              로그인
+            </button>
+          </div>
+          <div className="signin-sub">
+            <span className="saveId">
+              아이디 저장
+              <input type="checkbox" />
+            </span>
+            <a href="https://www.naver.com/"> 아이디 찾기</a> |
+            <a href="https://www.naver.com/"> 비밀번호 찾기</a>
+          </div>
+          <div>
+            <button
+              className="box signS-bt"
+              type="button"
+              onClick={navigateToSignup}
+            >
+              회원가입
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Signin;

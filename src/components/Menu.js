@@ -1,35 +1,43 @@
 import React from "react";
 import styles from "../css/Menu.module.css";
+import { Link } from "react-router-dom";
+import Sign from "./Sign";
 
 const Menu = () => {
   return (
     <div className={styles.Menu}>
-       {/* 홈페이지 로고 */}
+      {/* Homepage logo */}
       <header>
-        <a href="https://google.com">
+        <Link to="/">
           TREN<span className={styles.highlight}>D</span>EVELOPER
-        </a>
+        </Link>
       </header>
-       {/* 메뉴 태그 */}
+      {/* Menu tags */}
       <ul className={styles.group}>
+        {/* Recruitment list */}
         <li className={styles.tag}>
-          <a href="https://www.naver.com/" className={styles.nav} id="nav1">
+          <Link to="/recruitement/list" className={styles.nav} id="nav1">
             채용 공고
-          </a>
+          </Link>
         </li>
+        {/* Trend statistics */}
         <li className={styles.tag}>
-          <a href="https://www.naver.com/" className={styles.nav} id="nav2">
+          <Link to="/trend/stat" className={styles.nav} id="nav2">
             트렌드
-          </a>
+          </Link>
         </li>
+        {/* Job recommendation */}
         <li className={styles.tag}>
-          <a href="https://www.naver.com/" className={styles.nav} id="nav3">
-            로드맵
-          </a>
+          <Link to="/roadmap/stat" className={styles.nav} id="nav3">
+            직군 추천
+          </Link>
         </li>
       </ul>
-      {/* 메뉴 밑 구분선 */}
-      <div className={styles['menu-line']}/>
+      {/* Sign component */}
+      <Sign />
+
+      {/* Menu line separator */}
+      <div className={styles["menu-line"]} />
     </div>
   );
 };
