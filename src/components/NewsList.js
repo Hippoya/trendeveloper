@@ -5,75 +5,65 @@ import styles from "../css/NewsList.module.css";
 const API_URI = process.env.REACT_APP_API_URI;
 
 // Functional component for NewsList
-const NewsList = () => {
+const NewsList = (props) => {
   // State variables for positive, negative, and neutral news
   let [positiveNews, setPositiveNews] = useState([]);
   let [negativeNews, setNegativeNews] = useState([]);
   let [neutralNews, setNeutralNews] = useState([]);
 
-  // URL search parameters
-  const urlSearchParams = new URLSearchParams(window.location.search);
-
   // useEffect hook to fetch news data
   useEffect(() => {
     // async function to fetch news data
+    // console.log(props.company);
     const fetchNewsData = async () => {
-      // get recruitment ID from URL search params
-      let recruitmentID = urlSearchParams.get("id");
-
-      // fetch recruitment detail using recruitment ID
-      const response = await fetch(
-        API_URI + "/api/v1/recruitment/detail?id=" + recruitmentID,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(),
-        }
-      );
-
-      // convert response to JSON format
-      const respJSON = await response.json();
-
       // fetch news list using company name from recruitment detail
       const response2 = await fetch(
-        API_URI + "/api/v1/news/list?company=" + respJSON["companyName"],
+        API_URI + "/news/list?company=" + props.company,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(),
+          //body: JSON.stringify(),
         }
       );
 
       // convert response to JSON format
       const respJSON2 = await response2.json();
+      // console.log(respJSON2);
 
       // filter news based on positive, negative, and neutral sentiment
-      if (respJSON2) {
+      // Assuming respJSON2 is an array
+      if (Array.isArray(respJSON2)) {
         const maxSize = 3;
+
+        // Adjust these conditions based on the actual data structure
         const positive = respJSON2
-          .filter((news) => news.positive === true)
-          .slice(0, maxSize);
-        const negative = respJSON2
-          .filter((news) => news.negative === true)
-          .slice(0, maxSize);
-        const neutral = respJSON2
-          .filter((news) => !news.positive && !news.negative)
+          .filter((news) => news.positive === 1 && news.negative === 0) // if positive is "1" when true
           .slice(0, maxSize);
 
-        // set state for positive, negative, and neutral news
+        const negative = respJSON2
+          .filter((news) => news.positive === 0 && news.negative === 1) // if negative is "1" when true
+          .slice(0, maxSize);
+
+        const neutral = respJSON2
+          .filter((news) => news.positive !== 1 && news.negative !== 1) // adjusting based on actual values
+          .slice(0, maxSize);
+
+        // console.log(positive);
+        // console.log(negative);
+        // console.log(neutral);
         setPositiveNews(positive);
         setNegativeNews(negative);
         setNeutralNews(neutral);
+      } else {
+        console.error("respJSON2 is not an array", respJSON2);
       }
     };
 
     // call fetchNewsData function
     fetchNewsData();
-  }, []);
+  }, [props.company]);
 
   // Component that displays a table with three columns of news items categorized by sentiment
   return (

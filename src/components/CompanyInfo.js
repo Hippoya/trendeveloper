@@ -17,7 +17,7 @@ const CompanyInfo = () => {
 
       // Fetch recruitment details using the recruitment ID
       const response = await fetch(
-        API_URI + "/api/v1/recruitment/detail?id=" + recruitmentID,
+        API_URI + "/recruitement/detail?id=" + recruitmentID,
         {
           method: "GET",
           headers: {
@@ -28,11 +28,12 @@ const CompanyInfo = () => {
       );
 
       // Parse the response as JSON
-      const respJSON = await response.json();
+      const respJSON = (await response.json())[0];
+      // console.log(respJSON);
 
       // Fetch company details using the company name obtained from the recruitment details
       const response2 = await fetch(
-        API_URI + "/api/v1/company/detail?id=" + respJSON["companyName"],
+        API_URI + "/company/detail?id=" + respJSON["companyName"],
         {
           method: "GET",
           headers: {
@@ -43,7 +44,8 @@ const CompanyInfo = () => {
       );
 
       // Parse the response as JSON and set the company information state
-      const respJSON2 = await response2.json();
+      const respJSON2 = (await response2.json())[0];
+      // console.log(respJSON2);
       setCompanyInfo(respJSON2);
     };
 
@@ -56,56 +58,56 @@ const CompanyInfo = () => {
     <div className={styles["company-info"]}>
       <div className={styles["info-box"]}>
         {/* Label for company information */}
-        <div className={styles["info-title"]}>Company Information</div>
+        <div className={styles["info-title"]}>회사 정보</div>
         {/* List of company information */}
         <div className={styles["info-type"]}>
           <ul className={styles["info-list"]}>
             {CompanyInfo && (
               <>
                 <li>
-                  Company Name{" "}
+                  회사 이름{" "}
                   <span>
                     {companyInfo ? companyInfo.companyName : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  Company Type{" "}
+                  회사 유형{" "}
                   <span>
                     {companyInfo ? companyInfo.busiSize : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  Number of Employees{" "}
+                  직원수{" "}
                   <span>
                     {companyInfo ? companyInfo.totPsncnt : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  Capital{" "}
+                  자본금{" "}
                   <span>
                     {companyInfo ? companyInfo.capitalAmt : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  Annual Sales{" "}
+                  연매출{" "}
                   <span>
                     {companyInfo ? companyInfo.yrSalesAmt : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  CEO Name{" "}
+                  CEO 성함{" "}
                   <span>
                     {companyInfo ? companyInfo.reperNm : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  Company Address{" "}
+                  회사 주소{" "}
                   <span>
                     {companyInfo ? companyInfo.corpAddr : "Loading..."}
                   </span>
                 </li>
                 <li>
-                  Homepage{" "}
+                  홈페이지{" "}
                   <span>
                     {companyInfo ? (
                       <a

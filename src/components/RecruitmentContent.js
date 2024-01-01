@@ -10,61 +10,72 @@ const RecruitContent = (props) => {
   // Creating a functional component named RecruitContent with props parameter
   const [companyInfo, setCompanyInfo] = useState({}); // Creating a state variable named companyInfo and its setter function with initial value as an empty object
   const [closeDtInfo, setCloseDtInfo] = useState({}); // Creating a state variable named closeDtInfo and its setter function with initial value as an empty object
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Using useEffect hook to perform side effect
-    const recruitmentID = props.id; // Assigning props.id value to recruitmentID variable
+
     const fetchCompanyInfo = async () => {
+      setIsLoading(true); // 데이터 로딩 시작
       // Creating an asynchronous function named fetchCompanyInfo
       try {
         // Using try-catch block to handle errors
+        const url = `${API_URI}/recruitement/detail?id=${props.id}`; // Assigning API endpoint to url variable
+        // console.log(url); // Logging url to console
         const response = await fetch(
           // Assigning fetch response to response variable
-          `${API_URI}/api/v1/recruitment/detail?id=${recruitmentID}`, // Fetching data from API endpoint with recruitmentID parameter
+          url, // Fetching data from API endpoint with recruitmentID parameter
           {
             method: "GET", // Using GET method to fetch data
             headers: {
               "Content-Type": "application/json", // Setting content type as application/json
             },
+            body: JSON.stringify(), // Converting data to JSON format
           }
         );
-        const respJSON = await response.json(); // Parsing response data to JSON format and assigning it to respJSON variable
-        const closeDtSrc = respJSON.closeDt; // Assigning respJSON.closeDt value to closeDtSrc variable
-        let closeDtInfoTmp = {}; // Creating a temporary object named closeDtInfoTmp
-        if (closeDtSrc.length > 0) {
-          // Checking if closeDtSrc length is greater than 0
-          const closeDtArr = closeDtSrc.split("  "); // Splitting closeDtSrc value by double space and assigning it to closeDtArr variable
-          if (closeDtArr.length === 1) {
-            // Checking if closeDtArr length is equal to 1
-            closeDtInfoTmp.date = closeDtArr[0]; // Assigning closeDtArr[0] value to closeDtInfoTmp.date
-            closeDtInfoTmp.until = // Assigning a JSX element to closeDtInfoTmp.until
-              (
-                <>
-                  <BiX size="30px" color="#E00000" />
-                  {/* Using BiX icon with size and color properties */}
-                </>
-              );
-          } else {
-            // If closeDtArr length is not equal to 1
-            closeDtInfoTmp.date = closeDtArr[1]; // Assigning closeDtArr[1] value to closeDtInfoTmp.date
-            closeDtInfoTmp.until = // Assigning a JSX element to closeDtInfoTmp.until
-              (
-                <>
-                  <BiCircle size="20px" color="#008000" />
-                  {/* Using BiCircle icon with size and color properties */}
-                </>
-              );
-          }
-        }
-        setCompanyInfo(respJSON); // Setting respJSON value to companyInfo state variable
-        setCloseDtInfo(closeDtInfoTmp); // Setting closeDtInfoTmp value to closeDtInfo state variable
+        // console.log(response.headers); // Logging response to console
+        const respJSON = (await response.json())[0]; // Parsing response data to JSON format and assigning it to respJSON variable
+        // console.log(respJSON); // Logging respJSON to console
+        // console.log(respJSON.companyName); // Logging respJSON to console
+        // console.log(respJSON.closeDT); // Logging respJSON.closeDT to console
+        // console.log(respJSON.closeDT === undefined); // Logging respJSON.closeDT === undefined to console
+        let closeDtInfoTmp = {
+          date: "",
+          until: null,
+        };
+        // Check if closeDT exists and is not undefined
+        const closeDtSrc = respJSON.closeDT;
+        // console.log(closeDtSrc);
+        const closeDtArr = closeDtSrc.split("  "); // Split by double spaces
+        // console.log(closeDtArr);
+
+        // Based on the length of closeDtArr, set closeDtInfoTmp
+        closeDtInfoTmp.date =
+          closeDtArr.length === 1 ? closeDtArr[0] : closeDtArr[1];
+        closeDtInfoTmp.until =
+          closeDtArr.length === 1 ? (
+            <BiX size="30px" color="#E00000" />
+          ) : (
+            <BiCircle size="20px" color="#008000" />
+          );
+
+        // Update state with the new information
+        setCompanyInfo(respJSON);
+        // console.log(companyInfo);
+        setCloseDtInfo(closeDtInfoTmp);
       } catch (error) {
         // Handling errors
         console.error(error); // Logging error to console
+      } finally {
+        setIsLoading(false); // 데이터 로딩 완료
       }
     };
     fetchCompanyInfo(); // Calling fetchCompanyInfo function
-  }, []); // Running useEffect hook only once when component mounts
+  }, [props.id]); // Running useEffect hook only once when component mounts
+
+  if (isLoading) {
+    return <div>Loading...</div>; // 로딩 인디케이터 렌더링
+  }
 
   return (
     // Returning JSX

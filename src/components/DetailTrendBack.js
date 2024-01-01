@@ -8,31 +8,29 @@ const API_URI = process.env.REACT_APP_API_URI;
 
 const DetailTrendBack = () => {
   const [chartData, setChartData] = useState([0, 0]);
+  const [news, setNews] = useState([]);
 
   const urlSearchParams = new URLSearchParams(window.location.search);
 
   useEffect(() => {
     // Fetch company info from API
+    let id = urlSearchParams.get("id");
     const fetchCompanyInfo = async () => {
-      let recruitmentID = urlSearchParams.get("id");
-
       // Fetch recruitment detail
-      const response = await fetch(
-        API_URI + "/api/v1/recruitment/detail?id=" + recruitmentID,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(),
-        }
-      );
+      const response = await fetch(API_URI + "/recruitement/detail?id=" + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(),
+      });
 
-      const respJSON = await response.json();
+      const respJSON = (await response.json())[0];
+      // console.log(respJSON);
 
       // Fetch company detail
       const response2 = await fetch(
-        API_URI + "/api/v1/company/detail?id=" + respJSON["companyName"],
+        API_URI + "/company/detail?id=" + respJSON["companyName"],
         {
           method: "GET",
           headers: {
@@ -42,14 +40,15 @@ const DetailTrendBack = () => {
         }
       );
 
-      const respJSON2 = await response2.json();
-
+      const respJSON2 = (await response2.json())[0];
+      // console.log(respJSON2);
       // Set chart data with fetched company info
       setChartData([
         respJSON2.negative * 100,
         respJSON2.positive * 100,
         respJSON2.neutral * 100,
       ]);
+      setNews(<NewsList company={respJSON["companyName"]}></NewsList>);
     };
 
     fetchCompanyInfo();
@@ -74,7 +73,7 @@ const DetailTrendBack = () => {
           <span>(클릭하면 관련 뉴스 기사 페이지로 이동해요!)</span>
         </div>
         {/* Render news list */}
-        <NewsList />
+        {news ? news : "Loading..."}
       </div>
     </div>
   );
