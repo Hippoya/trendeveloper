@@ -120,14 +120,13 @@ const RecruitBackground = () => {
   useEffect(() => {
     // create new URLSearchParams object
     const queryParams = new URLSearchParams();
+
     // get an array of selected checkbox ids
     const selectedIds = Object.keys(checkboxValues).filter(
       (key) => checkboxValues[key]
     );
-    // if there are selected checkboxes, append their ids to the query parameters
     if (selectedIds.length > 0) {
-      const idParam = selectedIds.join(",");
-      queryParams.append("id", idParam);
+      queryParams.append("id", selectedIds.join(","));
     }
     // if there is a search term, append it to the query parameters based on the selected search category
     if (search) {
@@ -137,13 +136,18 @@ const RecruitBackground = () => {
         queryParams.append("company", search);
       }
     }
-    // decode the query parameters and convert to a string
+    // // decode the query parameters and convert to a string
     const queryString = decodeURIComponent(queryParams.toString());
 
     // define an async function to fetch job postings
     const fetchJobPostings = async () => {
       // construct the API endpoint URL with the query parameters
-      const url = `${API_URI}/api/v1/recruitment/list?${queryString}`;
+      // const url = `${API_URI}/api/v1/recruitment/list?${queryString}`; //original
+      // const queryString = selectedIds.join(",");
+
+      const url = `${API_URI}/recruitement/list?${queryString}`;
+      console.log(queryString);
+      console.log(url);
 
       // make a GET request to the API endpoint
       const response = await fetch(url, {
@@ -152,9 +156,18 @@ const RecruitBackground = () => {
           "Content-Type": "application/json",
         },
       });
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      console.log(url);
 
       // parse the response as JSON
       const respJSON = await response.json();
+
+      console.log("respJSON");
+      console.log(respJSON);
 
       // set the job postings state with the response data
       setJobPostings(<RecruitmentList post={respJSON} />);
@@ -162,6 +175,7 @@ const RecruitBackground = () => {
 
     // call the fetchJobPostings function
     fetchJobPostings();
+    console.log("fetchJobPostings");
   }, [checkboxValues, search, searchCategory]); // re-run the effect whenever the checkboxValues, search, or searchCategory state changes
 
   // This function handles the key press event

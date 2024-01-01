@@ -6,7 +6,6 @@ const API_URI = process.env.REACT_APP_API_URI;
 
 const Companylogo = () => {
   let [logoLink, setlogoLink] = useState(null);
-  let respJSON = useState({});
 
   useEffect(() => {
     // Get the URL search parameters
@@ -16,11 +15,12 @@ const Companylogo = () => {
       // Check if the URL has an "id" parameter
       if (urlSearchParams.has("id")) {
         // Get the value of the "id" parameter
-        let recruitmentID = urlSearchParams.get("id");
+        const recruitmentID = urlSearchParams.get("id");
+        // console.log(recruitmentID);
 
         // Fetch the recruitment detail using the API
         let resp = await fetch(
-          API_URI + "/api/v1/recruitment/detail?id=" + recruitmentID,
+          API_URI + "/recruitement/detail?id=" + recruitmentID,
           {
             method: "GET",
             headers: {
@@ -30,7 +30,8 @@ const Companylogo = () => {
           }
         );
         // Parse the response as JSON
-        respJSON = await resp.json();
+        const respJSON = (await resp.json())[0];
+        // console.log(respJSON);
         // Set the logo link to the response's logo link
         setlogoLink("https://work.go.kr/" + respJSON["logoLink"]);
       }

@@ -9,9 +9,6 @@ const DetailBackground = () => {
   let [detailData, setdetailData] = useState(null);
   let [worknetLink, setWorknetLink] = useState("");
 
-  // State variable for response JSON
-  let respJSON = useState({});
-
   // Get URL search parameters
   const urlSearchParams = new URLSearchParams(window.location.search);
 
@@ -28,29 +25,27 @@ const DetailBackground = () => {
         </span>
       ));
   };
-
+  const recruitmentID = urlSearchParams.get("id");
   // Fetch data from API when component mounts
   useEffect(() => {
     const fetchData = async () => {
       if (urlSearchParams.has("id")) {
         // Get recruitment ID from URL search parameters
-        let recruitmentID = urlSearchParams.get("id");
 
         // Fetch recruitment detail data from API
-        let resp = await fetch(
-          API_URI + "/api/v1/recruitment/detail?id=" + recruitmentID,
+        const resp = await fetch(
+          API_URI + "/recruitement/detail?id=" + recruitmentID,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              //"Authorization": "Bearer " + token
             },
             body: JSON.stringify(),
           }
         );
 
         // Parse response JSON
-        respJSON = await resp.json();
+        const respJSON = (await resp.json())[0];
 
         // Set detail data state variable
         setdetailData(respJSON);
@@ -66,7 +61,7 @@ const DetailBackground = () => {
     };
 
     fetchData();
-  }, []);
+  }, [recruitmentID]);
 
   // Render a div with a background and job details
   return (
