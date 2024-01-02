@@ -20,7 +20,7 @@ const RecruitContent = (props) => {
       // Creating an asynchronous function named fetchCompanyInfo
       try {
         // Using try-catch block to handle errors
-        const url = `${API_URI}/recruitement/detail?id=${props.id}`; // Assigning API endpoint to url variable
+        const url = `${API_URI}/recruitment/detail?id=${props.id}`; // Assigning API endpoint to url variable
         // console.log(url); // Logging url to console
         const response = await fetch(
           // Assigning fetch response to response variable
@@ -85,7 +85,7 @@ const RecruitContent = (props) => {
       {/* Creating a table data cell with companyInfo.companyName value */}
       <td className={styles.link}>
         {/* Creating a table data cell with className attribute */}
-        <Link to={`/recruitement/detail?id=${companyInfo.wantedAuthNo}`}>
+        <Link to={`/recruitment/detail?id=${companyInfo.wantedAuthNo}`}>
           {/* Creating a Link component with to attribute */}
           {companyInfo.wantedTitle}
           {/* Displaying companyInfo.wantedTitle value */}

@@ -10,7 +10,7 @@ const CompanySlide = (props) => {
   const [closeDt, setcloseDt] = useState(""); // State variable for close date
   const [regDt, setregDt] = useState(""); // State variable for registration date
   const [jobsNm, setjobsNm] = useState(""); // State variable for job name
-  let respJSON = useState({}); // State variable for response JSON
+  // const respJSON = useState({}); // State variable for response JSON
   const data = props.data; // Props variable for data
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const CompanySlide = (props) => {
 
         let resp = await fetch(
           // Fetch data from API
-          API_URI + "/api/v1/recruitment/detail?id=" + recruitmentID,
+          API_URI + "/recruitment/detail?id=" + recruitmentID,
           {
             method: "GET",
             headers: {
@@ -31,7 +31,7 @@ const CompanySlide = (props) => {
             body: JSON.stringify(),
           }
         );
-        respJSON = await resp.json(); // Set respJSON to response JSON
+        const respJSON = (await resp.json())[0]; // Set respJSON to response JSON
         console.log(respJSON);
 
         setlogoLink(`https://work.go.kr/${respJSON.logoLink}`); // Set logoLink state variable to logo link from response JSON
@@ -48,7 +48,7 @@ const CompanySlide = (props) => {
   const handleClick = (event) => {
     // Function to handle click event
     event.preventDefault(); // Prevent default behavior
-    window.location.href = `/recruitement/detail?id=${data.wantedAuthNo}`; // Redirect to recruitment detail page
+    window.location.href = `/recruitment/detail?id=${data.wantedAuthNo}`; // Redirect to recruitment detail page
   };
 
   const handleError = () => {
