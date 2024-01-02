@@ -25,7 +25,7 @@ const MyPageBackground = () => {
 
   // Function to navigate to job list page
   const navigateToJobList = (id) => {
-    const url = `/recruitement/list?id=${id}`;
+    const url = `/recruitment/list?id=${id}`;
     window.location.href = url;
   };
 

@@ -41,10 +41,10 @@ function App() {
                 {/* Using Routes component */}
                 <Route path="/" element={<Main />} />
                 {/* Route for Main component */}
-                <Route path="/recruitement/list" element={<Recruitment />} />
+                <Route path="/recruitment/list" element={<Recruitment />} />
                 {/* Route for Recruitment component */}
                 <Route
-                  path="/recruitement/detail/:id?"
+                  path="/recruitment/detail/:id?"
                   element={<DetailPage />}
                 />
                 {/* Route for DetailPage component */}

@@ -12,7 +12,7 @@ const API_URI = process.env.REACT_APP_API_URI;
 //회원가입
 //Signup function that sends a POST request to the server to register a new user
 async function signupUser(credentials) {
-  return fetch(API_URI + "/api/v1/auth/register", {
+  return fetch(API_URI + "/auth/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
