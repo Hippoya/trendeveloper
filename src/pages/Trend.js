@@ -11,10 +11,10 @@ const Trend = () => {
     // Fetch ranks data from API
     const fetchRanks = async () => {
       let from = "202004";
-      let count = 40;
+      let to = "202308";
 
       const response = await fetch(
-        API_URI + `/api/v1/stat/rank?from=${from}&count=${count}`,
+        API_URI + `/stat/rank?from=${from}&to=${to}`,
         {
           method: "GET",
           headers: {
@@ -25,14 +25,9 @@ const Trend = () => {
       );
 
       const respJSON = await response.json();
-      // Extract the names of the top 5 ranks
-      let tmp = respJSON.map((item) => {
-        return item.name;
-      });
-      tmp = tmp.slice(0, 5);
-
+      console.log(respJSON);
       // Set the TrendBackground component with the top 5 ranks as props
-      setRanks(<TrendBackground ranks={tmp} />);
+      setRanks(<TrendBackground ranks={respJSON} />);
     };
 
     // Call the fetchRanks function when the component mounts

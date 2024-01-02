@@ -17,16 +17,13 @@ const SimpleSlider = (props) => {
     // Fetch job postings from API
     const id = props.id;
     const fetchJobPostings = async () => {
-      const response = await fetch(
-        API_URI + "/api/v1/recruitment/list?id=" + id,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            // 'Authorization': 'Bearer ' + token,
-          },
-        }
-      );
+      const response = await fetch(API_URI + "/recruitment/list?id=" + id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Authorization': 'Bearer ' + token,
+        },
+      });
       const respJSON = await response.json();
 
       if (respJSON.length > 0) {

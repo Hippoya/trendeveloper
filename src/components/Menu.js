@@ -16,7 +16,7 @@ const Menu = () => {
       <ul className={styles.group}>
         {/* Recruitment list */}
         <li className={styles.tag}>
-          <Link to="/recruitement/list" className={styles.nav} id="nav1">
+          <Link to="/recruitment/list" className={styles.nav} id="nav1">
             채용 공고
           </Link>
         </li>

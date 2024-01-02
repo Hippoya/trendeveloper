@@ -26,7 +26,7 @@ const TrendReport = (props) => {
     const fetchData = async () => {
       if (urlSearchParams.has("id")) {
         // Fetch the data from the API
-        let resp = await fetch(API_URI + "/api/v1/stat?id=" + id, {
+        let resp = await fetch(API_URI + "/stat?id=" + id, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -35,6 +35,7 @@ const TrendReport = (props) => {
         });
 
         let respJSON = await resp.json();
+        console.log(respJSON);
         const data = JSON.parse(respJSON.stat);
 
         // Get the keys of the last 3 months
