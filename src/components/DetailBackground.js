@@ -34,7 +34,7 @@ const DetailBackground = () => {
 
         // Fetch recruitment detail data from API
         const resp = await fetch(
-          API_URI + "/recruitement/detail?id=" + recruitmentID,
+          API_URI + "/recruitment/detail?id=" + recruitmentID,
           {
             method: "GET",
             headers: {

@@ -11,7 +11,7 @@ const DetailMenu = () => {
       {/* Link to recruitment detail page */}
       <div className={styles.requirement}>
         <Link
-          to={`/recruitement/detail?id=${recruitmentID}`}
+          to={`/recruitment/detail?id=${recruitmentID}`}
           className={styles.nav}
           id="nav1"
         >
