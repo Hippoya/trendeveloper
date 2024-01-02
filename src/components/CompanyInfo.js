@@ -17,7 +17,7 @@ const CompanyInfo = () => {
 
       // Fetch recruitment details using the recruitment ID
       const response = await fetch(
-        API_URI + "/recruitement/detail?id=" + recruitmentID,
+        API_URI + "/recruitment/detail?id=" + recruitmentID,
         {
           method: "GET",
           headers: {

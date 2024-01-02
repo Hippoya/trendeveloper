@@ -11,7 +11,7 @@ const API_URI = process.env.REACT_APP_API_URI;
 async function signoutUser() {
   const savedToken = `Bearer ${localStorage.getItem("token")}`;
 
-  return fetch(API_URI + "/api/v1/auth/signout", {
+  return fetch(API_URI + "/auth/signout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -145,7 +145,7 @@ const RecruitBackground = () => {
       // const url = `${API_URI}/api/v1/recruitment/list?${queryString}`; //original
       // const queryString = selectedIds.join(",");
 
-      const url = `${API_URI}/recruitement/list?${queryString}`;
+      const url = `${API_URI}/recruitment/list?${queryString}`;
       console.log(queryString);
       console.log(url);
 

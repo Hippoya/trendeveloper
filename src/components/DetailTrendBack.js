@@ -17,7 +17,7 @@ const DetailTrendBack = () => {
     let id = urlSearchParams.get("id");
     const fetchCompanyInfo = async () => {
       // Fetch recruitment detail
-      const response = await fetch(API_URI + "/recruitement/detail?id=" + id, {
+      const response = await fetch(API_URI + "/recruitment/detail?id=" + id, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

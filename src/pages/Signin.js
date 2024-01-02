@@ -11,7 +11,7 @@ const API_URI = process.env.REACT_APP_API_URI;
 
 // Function to send a POST request to the server to sign in the user
 async function signinUser(credentials) {
-  return fetch(API_URI + "/api/v1/auth/signin", {
+  return fetch(API_URI + "/auth/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

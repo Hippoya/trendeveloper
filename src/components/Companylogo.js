@@ -20,7 +20,7 @@ const Companylogo = () => {
 
         // Fetch the recruitment detail using the API
         let resp = await fetch(
-          API_URI + "/recruitement/detail?id=" + recruitmentID,
+          API_URI + "/recruitment/detail?id=" + recruitmentID,
           {
             method: "GET",
             headers: {
