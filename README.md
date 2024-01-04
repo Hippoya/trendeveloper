@@ -3,6 +3,7 @@
 
 개발팀: 캡스톤 1조 파워레인저팀  
 개발기간: 2023/3/10 ~ 2023/6/14
+(리팩토링 : 2023/12/28 ~
 
 > 이 프로젝트는 세종대학교 'Capstone디자인(산학협력프로젝트)'에서 개발되었습니다.
 
@@ -21,7 +22,7 @@ IT 계열 구직을 희망하는 학생들을 위해 성적 엑셀 파일을 활
 ## 기술 스택
 ### 프론트 엔드
 
-javascript
+ - [/javascript]
 
 ### 백엔드
 - Framework: [JAVA/SPRING](https://flask-docs-kr.readthedocs.io/ko/latest/index.html)
@@ -41,7 +42,8 @@ javascript
 ## 역할 분배
 **1조 파워레인저팀**
 
+[[조윤희](https://github.com/y0c0y)] 프론트엔드, 마크다운 렌더링(JS, CSS) 
+
 [김**] 기획, UI, 페이지 API, 발표  
 [서**] 백엔드, 각종 API, EC2 및 DB 세팅  
-[조윤희](https://github.com/y0c0y) 프론트엔드, 마크다운 렌더링(JS, CSS)
 [천**] 백엔드, 각종 API, EC2 및 DB 세팅  
