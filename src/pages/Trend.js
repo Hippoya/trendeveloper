@@ -10,7 +10,7 @@ const Trend = () => {
   useEffect(() => {
     // Fetch ranks data from API
     const fetchRanks = async () => {
-      let from = "202004";
+      let from = "202306";
       let to = "202308";
 
       const response = await fetch(

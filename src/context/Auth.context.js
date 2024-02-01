@@ -11,7 +11,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // Function to check if user is signed in
   const changeSignedIn = () => {
-    if (localStorage.getItem("token")) setIsSignedIn(true);
+    if (localStorage.getItem("name")) setIsSignedIn(true);
     else setIsSignedIn(false);
   };
 

@@ -16,28 +16,28 @@ const RoadMap = () => {
 
     // If token doesn't exist, redirect to signin page
     if (!token) {
-      alert("로그인 후 이용 가능합니다.");
-      navigate("/signin");
+      alert("현재 이용할 수 없는 서비스입니다.");
+      navigate("/");
+      // alert("로그인 후 이용 가능합니다.");
+
+      // navigate("/signin");
       return;
     }
 
     // Fetch roadmap data
     const fetchRoadmap = async () => {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("name");
       let count = 5;
 
       // Send GET request to API
-      const response = await fetch(
-        API_URI + "/api/v1/lecture/get?count=" + count,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          body: JSON.stringify(),
-        }
-      );
+      const response = await fetch(API_URI + "/lecture/get?count=" + count, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(),
+      });
 
       // Get response data in JSON format
       const respJSON = await response.json();

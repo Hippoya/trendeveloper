@@ -54,17 +54,17 @@ const Signup = () => {
       email,
       password,
     });
-    if ("token" in response) {
-      const receivedToken = response["token"];
+    if ("name" in response) {
+      // const receivedToken = response["token"];
       const receivedName = response["name"];
       const receivedEmail = response["email"];
 
       //If the email is already registered, show an alert message
-      if (receivedToken === "EXISTS") {
+      if (receivedName === "EXISTS") {
         window.alert("already registered email");
       } else {
         //If the registration is successful, save the user data in the local storage
-        localStorage.setItem("token", receivedToken);
+        // localStorage.setItem("token", receivedToken);
         localStorage.setItem("name", receivedName);
         localStorage.setItem("email", receivedEmail);
       }

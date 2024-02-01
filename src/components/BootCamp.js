@@ -15,7 +15,7 @@ const BootCamp = (props) => {
   useEffect(() => {
     const id = props.id;
     const fetchBootCamp = async () => {
-      const url = API_URI + "/api/v1/bootcamp/list?id=" + id;
+      const url = API_URI + "/bootcamp/list?id=" + id;
       const response = await fetch(url, {
         method: "GET",
         headers: {

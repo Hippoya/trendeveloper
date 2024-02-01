@@ -36,13 +36,13 @@ const UploadFile = () => {
 
       setSelectedFile(file); // Setting the selected file
 
-      const token = localStorage.getItem("token"); // Getting the token from local storage
-      fetch(API_URI + "/api/v1/lecture/set", {
+      const token = localStorage.getItem("name"); // Getting the token from local storage
+      fetch(API_URI + "/lecture/set", {
         // Sending a POST request to the API
         method: "POST",
         body: JSON.stringify(lectures), // Sending the lectures object as the request body
         headers: {
-          Authorization: "Bearer " + token, // Adding the token to the request headers
+          // Authorization: "Bearer " + token, // Adding the token to the request headers
           "Content-Type": "application/json", // Setting the content type to JSON
         },
       })

@@ -342,15 +342,15 @@ const SelectionBoxList = () => {
     }, {});
 
     // Get token from local storage
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
     // Send a POST request to the API endpoint with the provided data
-    fetch(API_URI + "/api/v1/lecture/set2", {
+    fetch(API_URI + "/lecture/set2", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         // Include the token in the Authorization header
-        Authorization: "Bearer " + token,
+        // Authorization: "Bearer " + token,
         // Set the content type to JSON
         "Content-Type": "application/json",
       },

@@ -9,13 +9,13 @@ const API_URI = process.env.REACT_APP_API_URI;
 
 // 로그아웃
 async function signoutUser() {
-  const savedToken = `Bearer ${localStorage.getItem("token")}`;
+  // const savedToken = `Bearer ${localStorage.getItem("token")}`;
 
   return fetch(API_URI + "/auth/signout", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: savedToken,
+      // Authorization: savedToken,
     },
     body: JSON.stringify(),
   }).then((data) => data);
@@ -29,13 +29,13 @@ const Sign = () => {
 
   useEffect(() => {
     // Get token from local storage
-    const tmp = localStorage.getItem("token");
+    const tmp = localStorage.getItem("name");
     // Function to sign out user
     const setSignout = async () => {
       // Call signoutUser function to send request to server
       const response = await signoutUser();
       // Remove token, name, and email from local storage
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
       localStorage.removeItem("name");
       localStorage.removeItem("email");
 
@@ -43,11 +43,10 @@ const Sign = () => {
         // If signout is successful, change signed in status to false
         console.log("로그아웃에 성공했습니다.");
         changeSignedIn();
+        navigate("/");
       } else {
         // If signout fails, change signed in status to false and navigate to home page
         console.log("로그아웃에 실패했습니다.");
-        changeSignedIn();
-        navigate("/");
       }
     };
 

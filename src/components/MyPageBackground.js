@@ -33,14 +33,14 @@ const MyPageBackground = () => {
   useEffect(() => {
     const MyPageData = async () => {
       // Get token from localStorage
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem("token");
 
       // Fetch data from API
-      const response = await fetch(API_URI + "/api/v1/user/mypage", {
+      const response = await fetch(API_URI + "/user/mypage", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
+          // Authorization: "Bearer " + token,
         },
         body: JSON.stringify(),
       });

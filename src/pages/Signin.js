@@ -61,9 +61,9 @@ const Signin = () => {
     else if (response.status === 200) {
       const responseJSON = await response.json();
       // If the token is in the response, save the token and user information to local storage and change the signed in state
-      if ("token" in responseJSON) {
-        const receivedToken = responseJSON["token"];
-        localStorage.setItem("token", receivedToken);
+      if ("name" in responseJSON) {
+        // const receivedToken = responseJSON["token"];
+        // localStorage.setItem("token", receivedToken);
         const receivedName = responseJSON["name"];
         localStorage.setItem("name", receivedName);
         const receivedEmail = responseJSON["email"];

@@ -70,14 +70,14 @@ const Favorite = () => {
   const handleSubmit = () => {
     const data = selectedCheckbox;
 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
 
     // Send POST request to API
-    fetch(API_URI + "/api/v1/user/favorite", {
+    fetch(API_URI + "/user/favorite", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
-        Authorization: "Bearer " + token,
+        // Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
     })
