@@ -25,15 +25,18 @@ IT 계열 구직을 희망하는 학생들을 위해 채용 동향을 분석하�
  - [/React.JS]
 
 ### 백엔드
-- Framework: [JAVA/SPRING](https://flask-docs-kr.readthedocs.io/ko/latest/index.html)
+- Framework: [JAVA/SPRING](https://spring.io/guides)
 - Framework: [Flask](https://flask-docs-kr.readthedocs.io/ko/latest/index.html)
 
 ### AI
-- Framework: [PYTORCH/KERAS](https://flask-docs-kr.readthedocs.io/ko/latest/index.html)
+- Framework: [KERAS](https://keras.io/api)
 - Framework: [Flask](https://flask-docs-kr.readthedocs.io/ko/latest/index.html)
 
 
 ## 기술적 챌린지
+
+1. 뉴스 헤드라인 감성 분석
+2. 취업 공고 트렌드 미래 동향 예측
 
 
 ## 개발 일정
@@ -42,8 +45,8 @@ IT 계열 구직을 희망하는 학생들을 위해 채용 동향을 분석하�
 ## 역할 분배
 **1조 파워레인저팀**
 
-[[조윤희](https://github.com/y0c0y)] 프론트엔드, UI
+[[조윤희](https://github.com/y0c0y)] Frontend, UI 디자인
 
-[김**] 기획, 프론트엔드, 발표  
-[서**] 백엔드, 각종 API, EC2 및 DB 세팅  
-[천**] 백엔드, 각종 API, EC2 및 DB 세팅  
+[김**] Frontend, PM, UI 디자인  
+[서**] Backend, devOps, 크롤러 제작  
+[천**] 감성 분석 및 트렌드 미래 동향 예측 인공지능 제작  
